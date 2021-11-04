@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31825.309
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "MiniScheduler.React", "MiniScheduler.React\MiniScheduler.React.esproj", "{123B8C25-24C5-404C-8148-A14C0D003ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniScheduler.API", "MiniScheduler.API\MiniScheduler.API.csproj", "{E8B134D7-EC0D-4790-83B7-8BA923E625BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{123B8C25-24C5-404C-8148-A14C0D003ED8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E8B134D7-EC0D-4790-83B7-8BA923E625BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B134D7-EC0D-4790-83B7-8BA923E625BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B134D7-EC0D-4790-83B7-8BA923E625BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B134D7-EC0D-4790-83B7-8BA923E625BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E48E62F-4AB9-49F6-A95E-B674D70282E4}
+	EndGlobalSection
+EndGlobal
