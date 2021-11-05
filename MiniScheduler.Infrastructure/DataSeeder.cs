@@ -15,8 +15,8 @@ namespace MiniScheduler.Infrastructure
             {
                 var employees = new List<Employ>()
                  {
-                    new Employ { /*Id = 1,*/ Name = "John", Surname="Peristeris", Email = "john@john.com", Created=DateTime.UtcNow },
-                    new Employ { /*Id = 2,*/ Name = "Michael", Surname="Schumacher", Email = "michael@michael.com", Created=DateTime.UtcNow }
+                    new Employ { /*Id = 1,*/ Name = "John", Surname="Peristeris", Email = "john@john.com", Telephone="6987092518", Created=DateTime.UtcNow },
+                    new Employ { /*Id = 2,*/ Name = "Michael", Surname="Schumacher", Email = "michael@michael.com", Telephone="6972149743", Created=DateTime.UtcNow }
                  };
                 context.Employ.AddRange(employees);
                 context.SaveChanges();

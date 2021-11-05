@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniScheduler.API", "MiniSc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniScheduler.Domain", "MiniScheduler.Domain\MiniScheduler.Domain.csproj", "{66863736-FE2D-4E37-9D54-34DCA50A094F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniScheduler.Infrastructure", "MiniScheduler.Infrastructure\MiniScheduler.Infrastructure.csproj", "{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniScheduler.DataAccessLayer", "MiniScheduler.Infrastructure\MiniScheduler.DataAccessLayer.csproj", "{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
