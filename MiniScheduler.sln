@@ -7,7 +7,9 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "MiniScheduler.React", "Mini
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniScheduler.API", "MiniScheduler.API\MiniScheduler.API.csproj", "{E8B134D7-EC0D-4790-83B7-8BA923E625BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniScheduler.Domain", "MiniScheduler.Domain\MiniScheduler.Domain.csproj", "{66863736-FE2D-4E37-9D54-34DCA50A094F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniScheduler.Domain", "MiniScheduler.Domain\MiniScheduler.Domain.csproj", "{66863736-FE2D-4E37-9D54-34DCA50A094F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniScheduler.Infrastructure", "MiniScheduler.Infrastructure\MiniScheduler.Infrastructure.csproj", "{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{66863736-FE2D-4E37-9D54-34DCA50A094F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66863736-FE2D-4E37-9D54-34DCA50A094F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66863736-FE2D-4E37-9D54-34DCA50A094F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B453259A-76B7-43AC-BBF4-25ABD4C48EFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
