@@ -6,7 +6,7 @@ namespace MiniScheduler.Domain.Models
     {
         public Skill()
         {
-            Skills = new List<Skill>();
+            Employees = new List<Employ>();
         }
         [Required]
         public string Name { get; set; }
@@ -14,7 +14,7 @@ namespace MiniScheduler.Domain.Models
         public string Description { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-        public ICollection<Skill> Skills { get; set; }
+        public ICollection<Employ> Employees { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace MiniScheduler.Infrastructure
 
         }
 
-        public virtual DbSet<Employ> Employees { get; set; }
+        public virtual DbSet<Employ> Employ { get; set; }
         public virtual DbSet<Skill> Skill { get; set; }
     }
 }
