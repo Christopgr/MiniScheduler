@@ -17,6 +17,8 @@ builder.Services.AddDbContext<MiniSchedulerContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IEmployRepository, EmployRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -44,5 +46,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000"));
 
 app.Run();
