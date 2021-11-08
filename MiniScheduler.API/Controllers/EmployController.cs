@@ -9,10 +9,12 @@ namespace MiniScheduler.API.Controllers
     public class EmployController : ControllerBase
     {
         private readonly IEmployRepository _employRepository;
+        private readonly ISkillRepository _skillRepository;
 
-        public EmployController(IEmployRepository employRepository)
+        public EmployController(IEmployRepository employRepository, ISkillRepository skillRepository)
         {
             _employRepository = employRepository;
+            _skillRepository = skillRepository;
         }
 
         // GET: api/Employ
@@ -36,11 +38,40 @@ namespace MiniScheduler.API.Controllers
             return employ;
         }
 
+        // PUT: api/Employ/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Employ>> PutEmploy(Employ employ)
+        {
+            foreach (var skill in employ.Skills)
+            {
+                var actualSkill = await _skillRepository.Get(skill.Id);
+                skill.Created = actualSkill.Created;
+                skill.Description = actualSkill.Description;
+                skill.Employees = actualSkill.Employees;
+                skill.Name = actualSkill.Name;
+                skill.Updated = actualSkill.Updated;
+            }
+            employ.Updated = DateTime.UtcNow;
+            await _employRepository.Update(employ);
+
+            return employ;
+        }
+
         // POST: api/Employ
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Employ>> PostEmploy(Employ employ)
         {
+            foreach (var skill in employ.Skills)
+            {
+                var actualSkill = await _skillRepository.Get(skill.Id);
+                skill.Created = actualSkill.Created;
+                skill.Description = actualSkill.Description;
+                skill.Employees = actualSkill.Employees;
+                skill.Name = actualSkill.Name;
+                skill.Updated = actualSkill.Updated;
+            }
+            employ.Created = DateTime.UtcNow;
             await _employRepository.Add(employ);
 
             return CreatedAtAction("GetEmploy", new { id = employ.Id }, employ);

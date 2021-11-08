@@ -1,17 +1,21 @@
 import * as React from "react";
-import { List, Datagrid, TextField, EmailField, DateField, Edit, SimpleForm, TextInput, Create } from 'react-admin';
+import { List, Datagrid, NumberField, TextField, ReferenceArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, ReferenceArrayInput, SelectArrayInput } from 'react-admin';
 
 export const EmployList = props => (
     <List {...props}>
         <Datagrid rowClick="edit">
-            <TextField source="id" />
+            <NumberField source="id" />
             <TextField source="name" />
             <TextField source="surname" />
             <TextField source="telephone" />
             <EmailField source="email" />
             <DateField source="created" />
-            <TextField source="updated" />
-            <TextField source="skills" />
+            <DateField source="updated" />
+            <ReferenceArrayField source="skills" reference="skill" label="skills" >
+                <SingleFieldList>
+                    <ChipField source="name" />
+                </SingleFieldList>
+            </ReferenceArrayField>
         </Datagrid>
     </List>
 );
@@ -19,12 +23,14 @@ export const EmployList = props => (
 export const EmployEdit = props => (
     <Edit {...props}>
         <SimpleForm>
-            <TextInput disabled source="id" />
+            <NumberField disabled source="id" />
             <TextInput source="name" />
             <TextInput source="surname" />
             <TextInput source="telephone" />
             <TextInput source="email" />
-            <TextInput source="skills" />
+            <ReferenceArrayInput source="skills" reference="skill">
+                <AutocompleteArrayInput />
+            </ReferenceArrayInput>
         </SimpleForm>
     </Edit>
 );
@@ -36,7 +42,9 @@ export const EmployCreate = props => (
             <TextInput source="surname" />
             <TextInput source="telephone" />
             <TextInput source="email" />
-            <TextInput source="skills" />
+            <ReferenceArrayInput source="skills" reference="skill">
+                <AutocompleteArrayInput />
+            </ReferenceArrayInput>
         </SimpleForm>
     </Create>
 );

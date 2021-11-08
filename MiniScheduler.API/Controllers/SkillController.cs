@@ -26,24 +26,35 @@ namespace MiniScheduler.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Skill>> GetSkill(int id)
         {
-            var Skill = await _SkillRepository.Get(id);
+            var skill = await _SkillRepository.Get(id);
 
-            if (Skill == null)
+            if (skill == null)
             {
                 return NotFound();
             }
 
-            return Skill;
+            return skill;
+        }
+
+        // PUT: api/Skill/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Skill>> PutSkill(Skill skill)
+        {
+            skill.Updated = DateTime.UtcNow;
+            await _SkillRepository.Update(skill);
+
+            return skill;
         }
 
         // POST: api/Skill
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Skill>> PostSkill(Skill Skill)
+        public async Task<ActionResult<Skill>> PostSkill(Skill skill)
         {
-            await _SkillRepository.Add(Skill);
+            skill.Created = DateTime.UtcNow;
+            await _SkillRepository.Add(skill);
 
-            return CreatedAtAction("GetSkill", new { id = Skill.Id }, Skill);
+            return CreatedAtAction("GetSkill", new { id = skill.Id }, skill);
         }
 
         // DELETE: api/Skill/5

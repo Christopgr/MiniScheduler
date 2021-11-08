@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Admin, Resource, EditGuesser } from 'react-admin';
-import employService from './services/employService';
+import { Admin, Resource } from 'react-admin';
+import fetchService from './services/fetchService';
 import { EmployList, EmployEdit, EmployCreate } from './components/employ/EmployCrud'
 import { SkillList, SkillEdit, SkillCreate } from './components/skill/SkillCrud'
 
 const App = () => (
-    <Admin dataProvider={employService} >
+    <Admin dataProvider={fetchService} >
         <Resource name="employ" list={EmployList} edit={EmployEdit} create={EmployCreate} />
         <Resource name="skill" list={SkillList} edit={SkillEdit} create={SkillCreate} />
     </Admin >

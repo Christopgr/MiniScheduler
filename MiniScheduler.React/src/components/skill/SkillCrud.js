@@ -1,14 +1,14 @@
 import * as React from "react";
-import { List, Datagrid, TextField, DateField, Edit, SimpleForm, TextInput, DateInput, Create } from 'react-admin';
+import { List, Datagrid, TextField, DateField, Edit, SimpleForm, TextInput, Create, NumberField } from 'react-admin';
 
 export const SkillList = props => (
     <List {...props}>
         <Datagrid rowClick="edit">
-            <TextField source="id" />
+            <NumberField source="id" />
             <TextField source="name" />
             <TextField source="description" />
             <DateField source="created" />
-            <TextField source="updated" />
+            <DateField source="updated" />
             <TextField source="employees" />
         </Datagrid>
     </List>
@@ -17,11 +17,10 @@ export const SkillList = props => (
 export const SkillEdit = props => (
     <Edit {...props}>
         <SimpleForm>
-            <TextInput disabled soure="id" />
+            <NumberField source="id" />
             <TextInput source="name" />
             <TextInput source="description" />
-            <DateInput source="created" />
-            <TextInput source="employees" />
+            <DateField disable="true" source="created" />
         </SimpleForm>
     </Edit>
 );
@@ -31,7 +30,6 @@ export const SkillCreate = props => (
         <SimpleForm>
             <TextInput source="name" />
             <TextInput source="description" />
-            <TextInput source="employees" />
         </SimpleForm>
     </Create>
 );

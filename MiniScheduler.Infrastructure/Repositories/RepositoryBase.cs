@@ -16,7 +16,7 @@ namespace MiniScheduler.DataAccessLayer.Repositories
         {
             this.context = context;
         }
-        public async Task<TEntity> Add(TEntity entity)
+        public virtual async Task<TEntity> Add(TEntity entity)
         {
             context.Set<TEntity>().Add(entity);
             await context.SaveChangesAsync();
@@ -47,7 +47,7 @@ namespace MiniScheduler.DataAccessLayer.Repositories
             return await context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> Update(TEntity entity)
+        public virtual async Task<TEntity> Update(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync();
