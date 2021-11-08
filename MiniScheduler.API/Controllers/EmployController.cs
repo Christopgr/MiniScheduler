@@ -42,16 +42,6 @@ namespace MiniScheduler.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Employ>> PutEmploy(Employ employ)
         {
-            foreach (var skill in employ.Skills)
-            {
-                var actualSkill = await _skillRepository.Get(skill.Id);
-                skill.Created = actualSkill.Created;
-                skill.Description = actualSkill.Description;
-                skill.Employees = actualSkill.Employees;
-                skill.Name = actualSkill.Name;
-                skill.Updated = actualSkill.Updated;
-            }
-            employ.Updated = DateTime.UtcNow;
             await _employRepository.Update(employ);
 
             return employ;
@@ -62,16 +52,6 @@ namespace MiniScheduler.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Employ>> PostEmploy(Employ employ)
         {
-            foreach (var skill in employ.Skills)
-            {
-                var actualSkill = await _skillRepository.Get(skill.Id);
-                skill.Created = actualSkill.Created;
-                skill.Description = actualSkill.Description;
-                skill.Employees = actualSkill.Employees;
-                skill.Name = actualSkill.Name;
-                skill.Updated = actualSkill.Updated;
-            }
-            employ.Created = DateTime.UtcNow;
             await _employRepository.Add(employ);
 
             return CreatedAtAction("GetEmploy", new { id = employ.Id }, employ);
