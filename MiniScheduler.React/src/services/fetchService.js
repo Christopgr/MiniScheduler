@@ -53,25 +53,11 @@ export default {
         }));
     },
 
-    update: (resource, params) => {
-
-        let skills = [];
-        if (params.data.skills.length > 0) {
-            params.data.skills.forEach(function (item) {
-                let skill = {};
-                skill.id = item;
-                skill.Description = "Random";
-                skill.Name = "Random";
-                skills.push(skill);
-            })
-        }
-        params.data.skills = skills;
-
-        return httpClient(`${apiUrl}/${resource}/${params.id}`, {
+    update: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}/${params.id}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),
-        }).then(({ json }) => ({ data: json }));
-    },
+        }).then(({ json }) => ({ data: json })),
 
     updateMany: (resource, params) => {
         const query = {
@@ -83,27 +69,13 @@ export default {
         }).then(({ json }) => ({ data: json }));
     },
 
-    create: (resource, params) => {
-        let skills = [];
-        if (params.data.skills.length > 0) {
-            params.data.skills.forEach(function (item) {
-                let skill = {};
-                skill.id = item;
-                skill.Description = "Random";
-                skill.Name = "Random";
-                skills.push(skill);
-            })
-
-            params.data.skills = skills;
-        }
-
-        return httpClient(`${apiUrl}/${resource}`, {
+    create: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}`, {
             method: 'POST',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({
             data: { ...params.data, id: json.id },
-        }));
-    },
+        })),
 
     delete: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.id}`, {

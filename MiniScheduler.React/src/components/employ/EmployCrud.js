@@ -1,5 +1,6 @@
 import * as React from "react";
 import { List, Datagrid, NumberField, TextField, ReferenceArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, ReferenceArrayInput, SelectArrayInput } from 'react-admin';
+import { useFormState } from 'react-final-form';
 
 export const EmployList = props => (
     <List {...props}>
@@ -20,31 +21,75 @@ export const EmployList = props => (
     </List>
 );
 
-export const EmployEdit = props => (
-    <Edit {...props}>
-        <SimpleForm>
-            <NumberField disabled source="id" />
-            <TextInput source="name" />
-            <TextInput source="surname" />
-            <TextInput source="telephone" />
-            <TextInput source="email" />
-            <ReferenceArrayInput source="skills" reference="skill">
-                <AutocompleteArrayInput />
-            </ReferenceArrayInput>
-        </SimpleForm>
-    </Edit>
-);
+export const EmployEdit = props => {
 
-export const EmployCreate = props => (
-    <Create {...props}>
-        <SimpleForm>
-            <TextInput source="name" />
-            <TextInput source="surname" />
-            <TextInput source="telephone" />
-            <TextInput source="email" />
-            <ReferenceArrayInput source="skills" reference="skill">
-                <AutocompleteArrayInput />
-            </ReferenceArrayInput>
-        </SimpleForm>
-    </Create>
-);
+    const [skillsList, setSkills] = React.useState([]);
+    React.useEffect(() => {
+        fetch(
+            `https://localhost:7213/api/skill`,
+            {
+                method: "GET",
+                headers: new Headers({
+                    Accept: "application/json"
+                })
+            }
+        )
+            .then(res => res.json())
+            .then(data => setSkills(data))
+            .catch(error => console.log(error));
+    }, []);
+
+    return (
+        <Edit {...props}>
+            <SimpleForm>
+                <NumberField disabled source="id" />
+                <TextInput source="name" />
+                <TextInput source="surname" />
+                <TextInput source="telephone" />
+                <TextInput source="email" />
+                <AutocompleteArrayInput
+                    parse={value => value && value.map(v => skillsList.find(x => x.id = v))
+                    }
+                    format={value => value && value.map(v => v.id)}
+                    source="skills" choices={skillsList}
+                />
+            </SimpleForm>
+        </Edit>
+    );
+}
+
+export const EmployCreate = props => {
+
+    const [skillsList, setSkills] = React.useState([]);
+    React.useEffect(() => {
+        fetch(
+            `https://localhost:7213/api/skill`,
+            {
+                method: "GET",
+                headers: new Headers({
+                    Accept: "application/json"
+                })
+            }
+        )
+            .then(res => res.json())
+            .then(data => setSkills(data))
+            .catch(error => console.log(error));
+    }, []);
+
+    return (
+        <Create {...props}>
+            <SimpleForm>
+                <TextInput source="name" />
+                <TextInput source="surname" />
+                <TextInput source="telephone" />
+                <TextInput source="email" />
+                <AutocompleteArrayInput
+                    parse={value => value && value.map(v => skillsList.find(x => x.id = v))
+                    }
+                    format={value => value && value.map(v => v.id)}
+                    source="skills" choices={skillsList}
+                />
+            </SimpleForm>
+        </Create>
+    );
+}
