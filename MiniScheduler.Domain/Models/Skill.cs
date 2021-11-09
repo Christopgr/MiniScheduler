@@ -14,7 +14,7 @@ namespace MiniScheduler.Domain.Models
         public string Description { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-        public ICollection<Employ> Employees { get; set; }
+        public List<Employ> Employees { get; set; }
 
     }
 }

@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniScheduler.Infrastructure;
 
+#nullable disable
+
 namespace MiniScheduler.DataAccessLayer.Migrations
 {
     [DbContext(typeof(MiniSchedulerContext))]
@@ -15,31 +17,18 @@ namespace MiniScheduler.DataAccessLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("EmploySkill", b =>
-                {
-                    b.Property<int>("EmployeesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeesId", "SkillsId");
-
-                    b.HasIndex("SkillsId");
-
-                    b.ToTable("EmploySkill");
-                });
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("MiniScheduler.Domain.Models.Employ", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -66,12 +55,36 @@ namespace MiniScheduler.DataAccessLayer.Migrations
                     b.ToTable("Employ");
                 });
 
+            modelBuilder.Entity("MiniScheduler.Domain.Models.EmploySkill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("EmploySkill");
+                });
+
             modelBuilder.Entity("MiniScheduler.Domain.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -92,19 +105,23 @@ namespace MiniScheduler.DataAccessLayer.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("EmploySkill", b =>
+            modelBuilder.Entity("MiniScheduler.Domain.Models.EmploySkill", b =>
                 {
-                    b.HasOne("MiniScheduler.Domain.Models.Employ", null)
+                    b.HasOne("MiniScheduler.Domain.Models.Employ", "Employ")
                         .WithMany()
-                        .HasForeignKey("EmployeesId")
+                        .HasForeignKey("EmployId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MiniScheduler.Domain.Models.Skill", null)
+                    b.HasOne("MiniScheduler.Domain.Models.Skill", "Skill")
                         .WithMany()
-                        .HasForeignKey("SkillsId")
+                        .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Employ");
+
+                    b.Navigation("Skill");
                 });
 #pragma warning restore 612, 618
         }

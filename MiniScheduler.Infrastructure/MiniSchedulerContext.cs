@@ -12,15 +12,16 @@ namespace MiniScheduler.Infrastructure
 
         public virtual DbSet<Employ> Employ { get; set; }
         public virtual DbSet<Skill> Skill { get; set; }
-
+        public virtual DbSet<Skill> EmploySkill { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Employ>()
-            .HasMany(p => p.Skills)
-            .WithMany(p => p.Employees)
-            .UsingEntity(j => j.ToTable("EmploySkill"));
+                .HasMany(x => x.Skills)
+                .WithMany(x => x.Employees)
+                    .UsingEntity<EmploySkill>(
+                         x => x.HasOne(x => x.Skill).WithMany().HasForeignKey(k=>k.SkillId),
+                         x => x.HasOne(x => x.Employ).WithMany().HasForeignKey(k => k.EmployId)
+                    );
         }
     }
 }

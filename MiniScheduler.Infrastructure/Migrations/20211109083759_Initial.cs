@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace MiniScheduler.DataAccessLayer.Migrations
 {
-    public partial class AddBlogCreatedTimestamp : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,30 +47,37 @@ namespace MiniScheduler.DataAccessLayer.Migrations
                 name: "EmploySkill",
                 columns: table => new
                 {
-                    EmployeesId = table.Column<int>(type: "int", nullable: false),
-                    SkillsId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployId = table.Column<int>(type: "int", nullable: false),
+                    SkillId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmploySkill", x => new { x.EmployeesId, x.SkillsId });
+                    table.PrimaryKey("PK_EmploySkill", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmploySkill_Employ_EmployeesId",
-                        column: x => x.EmployeesId,
+                        name: "FK_EmploySkill_Employ_EmployId",
+                        column: x => x.EmployId,
                         principalTable: "Employ",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmploySkill_Skill_SkillsId",
-                        column: x => x.SkillsId,
+                        name: "FK_EmploySkill_Skill_SkillId",
+                        column: x => x.SkillId,
                         principalTable: "Skill",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmploySkill_SkillsId",
+                name: "IX_EmploySkill_EmployId",
                 table: "EmploySkill",
-                column: "SkillsId");
+                column: "EmployId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmploySkill_SkillId",
+                table: "EmploySkill",
+                column: "SkillId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

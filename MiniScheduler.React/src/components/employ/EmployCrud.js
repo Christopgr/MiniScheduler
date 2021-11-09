@@ -1,5 +1,5 @@
 import * as React from "react";
-import { List, Datagrid, NumberField, TextField, ReferenceArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, ReferenceArrayInput, SelectArrayInput } from 'react-admin';
+import { List, Datagrid, NumberField, TextField, ArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, SelectArrayInput } from 'react-admin';
 import { useFormState } from 'react-final-form';
 
 export const EmployList = props => (
@@ -12,11 +12,12 @@ export const EmployList = props => (
             <EmailField source="email" />
             <DateField source="created" />
             <DateField source="updated" />
-            <ReferenceArrayField source="skills" reference="skill" label="skills" >
+            <ArrayField source="skills">
                 <SingleFieldList>
                     <ChipField source="name" />
                 </SingleFieldList>
-            </ReferenceArrayField>
+            </ArrayField>
+
         </Datagrid>
     </List>
 );
