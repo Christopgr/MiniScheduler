@@ -22,6 +22,13 @@ namespace MiniScheduler.DataAccessLayer.Repositories
             return await _context.Employ.Include(e=>e.Skills).ToListAsync();
         }
 
+        public override async Task<Employ> Get(int id)
+        {
+            var employ = await _context.Employ.Include(e=>e.Skills).FirstOrDefaultAsync(x=>x.Id == id);
+
+            return employ;
+        }
+
         public override async Task<Employ> Update(Employ employ)
         {
             _context.Update(employ);

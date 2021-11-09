@@ -12,7 +12,7 @@ namespace MiniScheduler.Infrastructure
 
         public virtual DbSet<Employ> Employ { get; set; }
         public virtual DbSet<Skill> Skill { get; set; }
-        public virtual DbSet<Skill> EmploySkill { get; set; }
+        public virtual DbSet<EmploySkill> EmploySkill { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employ>()
