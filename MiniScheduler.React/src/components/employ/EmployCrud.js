@@ -1,9 +1,15 @@
 import * as React from "react";
-import { List, Datagrid, NumberField, TextField, ArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, SelectArrayInput } from 'react-admin';
-import { useFormState } from 'react-final-form';
+import { List, Datagrid, NumberField, TextField, ArrayField, AutocompleteArrayInput, SingleFieldList, ChipField, EmailField, DateField, Edit, SimpleForm, TextInput, Create, ReferenceInput, SelectInput } from 'react-admin';
+
+const employFilters = [
+    <TextInput source="q" label="Search" alwaysOn />,
+    <ReferenceInput source="employ" label="Employ" reference="employ" allowEmpty>
+        <SelectInput optionText="name" />
+    </ReferenceInput>,
+];
 
 export const EmployList = props => (
-    <List {...props}>
+    <List filters={employFilters} {...props}>
         <Datagrid rowClick="edit">
             <NumberField source="id" />
             <TextField source="name" />

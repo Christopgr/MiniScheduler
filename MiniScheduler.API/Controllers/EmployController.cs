@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MiniScheduler.DataAccessLayer.Repositories;
+using MiniScheduler.Domain.Filters;
 using MiniScheduler.Domain.Models;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace MiniScheduler.API.Controllers
 {
@@ -17,9 +20,13 @@ namespace MiniScheduler.API.Controllers
 
         // GET: api/Employ
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employ>>> GetEmploy()
+        public async Task<ActionResult<IEnumerable<Employ>>> GetEmploy([FromQuery] EmployFilter employFilter)
         {
-            return await _employRepository.GetAll();
+            var employees = await _employRepository.GetAll();
+            var filterQuery = JObject.Parse(employFilter.Filter).GetValue("q");
+            return filterQuery != null
+                ? employees.Where(x => x.Name.ToLowerInvariant().Contains(filterQuery.ToString().ToLowerInvariant()) || x.Surname.ToLowerInvariant().Contains(filterQuery.ToString().ToLowerInvariant())).ToList()
+                : employees;
         }
 
         // GET: api/Employ/5
