@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniScheduler.Infrastructure;
 
-namespace MiniScheduler.Infrastructure.Migrations
+namespace MiniScheduler.DataAccessLayer.Migrations
 {
     [DbContext(typeof(MiniSchedulerContext))]
-    [Migration("20211105094110_Initial")]
-    partial class Initial
+    [Migration("20211108151743_AddBlogCreatedTimestamp")]
+    partial class AddBlogCreatedTimestamp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,6 @@ namespace MiniScheduler.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -59,7 +58,6 @@ namespace MiniScheduler.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")

@@ -9,12 +9,10 @@ namespace MiniScheduler.API.Controllers
     public class EmployController : ControllerBase
     {
         private readonly IEmployRepository _employRepository;
-        private readonly ISkillRepository _skillRepository;
 
-        public EmployController(IEmployRepository employRepository, ISkillRepository skillRepository)
+        public EmployController(IEmployRepository employRepository)
         {
             _employRepository = employRepository;
-            _skillRepository = skillRepository;
         }
 
         // GET: api/Employ

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniScheduler.Infrastructure;
 
-namespace MiniScheduler.Infrastructure.Migrations
+namespace MiniScheduler.DataAccessLayer.Migrations
 {
     [DbContext(typeof(MiniSchedulerContext))]
     partial class MiniSchedulerContextModelSnapshot : ModelSnapshot
@@ -45,7 +45,6 @@ namespace MiniScheduler.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -57,7 +56,6 @@ namespace MiniScheduler.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")
