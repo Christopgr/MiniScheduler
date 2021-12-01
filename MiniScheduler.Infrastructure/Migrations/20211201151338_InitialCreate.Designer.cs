@@ -12,8 +12,8 @@ using MiniScheduler.Infrastructure;
 namespace MiniScheduler.DataAccessLayer.Migrations
 {
     [DbContext(typeof(MiniSchedulerContext))]
-    [Migration("20211109083759_Initial")]
-    partial class Initial
+    [Migration("20211201151338_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
